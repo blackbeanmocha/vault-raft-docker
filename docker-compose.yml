@@ -1,0 +1,41 @@
+version: '3.7'
+
+services:
+  vault1:
+    build:
+      context: ./vault
+      dockerfile: Dockerfile
+    volumes:
+      - vault-keys:/vault/keys
+    environment:
+      - VAULT_RAFT_NODE_ID=node1
+    command: master
+    cap_add:
+      - IPC_LOCK
+
+  vault2:
+    build:
+      context: ./vault
+      dockerfile: Dockerfile
+    volumes:
+      - vault-keys:/vault/keys
+    environment:
+      - VAULT_RAFT_NODE_ID=node2
+    command: follower
+    cap_add:
+      - IPC_LOCK
+
+  vault3:
+    build:
+      context: ./vault
+      dockerfile: Dockerfile
+    volumes:
+      - vault-keys:/vault/keys
+    environment:
+      - VAULT_RAFT_NODE_ID=node3
+    command: follower
+    cap_add:
+      - IPC_LOCK
+
+volumes:
+  vault-keys:
