@@ -4,7 +4,6 @@ role=$1
 echo "User given role: $role"
 
 key_file="/vault/keys/key.txt"
-master_ip="/vault/keys/master_ip.txt"
 
 # create raft folder
 mkdir -p /vault/raft
